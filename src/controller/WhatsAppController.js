@@ -234,6 +234,7 @@ class WhatsAppController{
 
             });
 
+            this._camera = new CameraController(this.el.videoCamera);
 
         });
 
