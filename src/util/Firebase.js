@@ -17,32 +17,59 @@ constructor(){
     this.init();
 
 }
-init(){
+    init(){
 
-    if(!this._initialized){
+        if(!this._initialized){
 
-        firebase.initializeApp(this._config)
+            firebase.initializeApp(this._config)
+            
+            firebase.firestore().settings({
+
+                timestampsInSnapshots: true
+            });
+            
+            this._initialized = true;
+
+        }
         
-        firebase.firestore().settings({
+    }
 
-            timestampsInSnapshots: true
-        });
-        
-        this._initialized = true;
+    static db(){
+
+        return firebase.firestore();
 
     }
-    
-}
 
-static db(){
+    static hd(){
 
-    return firebase.firestore();
+        return firebase.storage();
+    }
+    initAuth(){
+        
+        return new Promise((s,f)=>{
 
-}
+            let provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+            .then(result =>{
 
-static hd(){
+                let token = result.credential.accessToken;
+                let user = result.user;
 
-    return firebase.storage();
-}
+                s({
+                    user,
+                    token
+                });
+
+            })
+            .catch(err=>{
+
+
+                f(err);
+
+            });
+
+        });
+
+    }
 
 }
