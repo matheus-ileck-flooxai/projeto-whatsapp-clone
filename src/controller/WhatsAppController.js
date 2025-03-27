@@ -245,11 +245,13 @@ export class WhatsAppController{
 
             this.closeAllMainPanel();
             this.el.panelMessagesContainer.show();
+            this._camera.stop()
         });
 
         this.el.btnTakePicture.on('click', e=>{
 
-            console.log('Abriu');
+            this._camera.stop()
+
 
         });
         this.el.btnAttachDocument.on('click', e=>{
@@ -369,6 +371,7 @@ export class WhatsAppController{
             emoji.on('click',e=>{
 
                 console.log(emoji.dataset.unicode);
+                
                 let img = this.el.imgEmojiDefault.cloneNode()
 
                 img.style.cssText = emoji.style.cssText;

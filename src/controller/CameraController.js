@@ -10,10 +10,8 @@ export class CameraController{
 
         }).then(stream=>{
 
-            this._videoEl.src = URL.createObjectURL(stream);
-
-            console.log(this._videoEl.src);
-            
+            this._stream = stream;
+            this._videoEl.srcObject = stream;
             this._videoEl.play();
         }).catch(err=>{
 
@@ -21,6 +19,17 @@ export class CameraController{
 
         });
 
+  
     }
 
+    stop(){
+
+        this._stream.getTracks().forEach(track=>{
+
+            track.stop();
+
+        });
+
+
+    }
 }
