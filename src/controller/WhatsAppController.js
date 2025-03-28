@@ -234,9 +234,16 @@ export class WhatsAppController{
         });
         this.el.btnSavePanelEditProfile.on('click', e=>{
 
+            this.el.btnSavePanelEditProfile.disabled = true;
+            
+            this._user.name = this.el.inputNamePanelEditProfile.innerHTML
 
-            console.log(this.el.inputNamePanelEditProfile.innerHTML);
+            this._user.save().then(()=>{
 
+                this.el.btnSavePanelEditProfile.disabled = false;
+
+
+            });
         });
 
         this.el.formPanelAddContact.on('submit', e=>{
@@ -245,6 +252,31 @@ export class WhatsAppController{
             e.preventDefault();
 
             let formData = new FormData(this.el.formPanelAddContact);
+
+
+            let contact = new User(formData.get('email'));
+
+            contact.on('datachange', data=>{
+
+                if(data.name){
+
+                    this._user.addContact(contact).then(()=>{
+
+                        this.el.btnClosePanelAddContact.click();
+
+                        console.info('Contato foi adicionado!');
+
+                    });
+
+                }
+                else{
+
+                    console.error('Usuário não foi encontrado');
+
+                }
+
+            })
+
             
         });
 
