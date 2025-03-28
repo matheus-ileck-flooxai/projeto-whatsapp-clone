@@ -19,7 +19,7 @@ constructor(){
 }
     init(){
 
-        if(!this._initialized){
+        if(!window._initializedFirebase){
 
             firebase.initializeApp(this._config)
             
@@ -28,7 +28,7 @@ constructor(){
                 timestampsInSnapshots: true
             });
             
-            this._initialized = true;
+            window._initializedFirebase = true;
 
         }
         
