@@ -9,7 +9,7 @@ constructor(){
             apiKey: "AIzaSyAniI6NNoXhF95-_d016joxhenXyzi8xRU",
             authDomain: "whatsapp-clone-96f1b.firebaseapp.com",
             projectId: "whatsapp-clone-96f1b",
-            storageBucket: "whatsapp-clone-96f1b.firebasestorage.app",
+            storageBucket: "gs://whatsapp-clone-96f1b.firebasestorage.app",
             messagingSenderId: "183647378810",
             appId: "1:183647378810:web:a699561fc97dfc739a8ac3"
           };
