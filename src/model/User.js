@@ -98,5 +98,6 @@ export class User extends Model {
         })
 
     }
+    
 
 }
