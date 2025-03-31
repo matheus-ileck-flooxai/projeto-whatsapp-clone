@@ -87,7 +87,7 @@ export class User extends Model {
 
                     data.id = doc.id;
 
-                    contacts.push();
+                    contacts.push(data);
 
                 })
 
@@ -98,6 +98,6 @@ export class User extends Model {
         })
 
     }
-    
+
 
 }
