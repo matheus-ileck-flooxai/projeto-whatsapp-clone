@@ -304,14 +304,16 @@ export class Message extends Model{
                                 </div>
                                         `;
 
+
                                         if(this.photo){
 
                                             
-                                            let img = document.querySelector('.message-photo');
+                                            let img = div.querySelector('.message-photo');
                                             img.src = this.photo;
-
-                                            
                                             img.show();
+                                            
+
+                                       
 
                                         }
 
