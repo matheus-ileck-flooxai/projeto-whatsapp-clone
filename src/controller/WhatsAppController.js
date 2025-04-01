@@ -10,6 +10,7 @@ import { Chat } from "./../model/Chat";
 import { Message } from "../model/Message";
 import { Base64 } from "../util/base64";
 import { ContactsController } from "../controller/ContactsController";
+import { Metadata } from "pdfjs-dist";
 
 
 
@@ -842,7 +843,20 @@ export class WhatsAppController{
         })
         this.el.btnFinishMicrophone.on('click', e=>{
 
-            this._microphoneController.stop();
+            this._microphoneController.on('recorded', (file,metadada)=>{
+
+                Message.sendAudio(
+                    this._contactActive.chatId,
+                    this._user.email,
+                    file,
+                    metadada,
+                    this._user.photo
+                )
+
+            });
+
+
+            this._microphoneController.stopRecorder();
             this.closeRecordMicrophone();
 
 
